@@ -15,6 +15,7 @@ public class Auto {
     private String modelo;
     private String color;
     private String placas;
+    private String cliente;
 
     // Getter y Setter para ID
     public Long getId() {
@@ -57,5 +58,9 @@ public class Auto {
     public void setPlacas(String placas) {
         this.placas = placas;
     }
+
+    public String getCliente(String cliente) { return cliente; }
+    public void setCliente(String cliente) { this.cliente= cliente; }
+
 }
 
