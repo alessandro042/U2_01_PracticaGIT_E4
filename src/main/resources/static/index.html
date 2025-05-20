@@ -2,10 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Autos</title>
-    <script defer src="js/index.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -21,100 +26,154 @@
             animation: fadeInUp 0.5s ease-out;
         }
 
-        section {
+
+        main > section {
             display: none;
         }
 
-        section.active {
+
+        main > section.active {
             display: block;
         }
-    </style>
-</head>
-<body class="bg-white text-gray-800">
 
-<!-- Navbar -->
-<nav class="bg-black text-white px-6 py-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold tracking-wide">Agencia de Autos</h1>
-        <ul class="flex space-x-6 text-sm">
-            <li><a href="#" onclick="mostrarSeccion('inicio')" class="hover:text-gray-300 transition">Inicio</a></li>
-            <li><a href="#" onclick="mostrarSeccion('registro')" class="hover:text-gray-300 transition">Registrar</a></li>
-            <li><a href="#" onclick="mostrarSeccion('listado')" class="hover:text-gray-300 transition">Listado</a></li>
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+        button:focus-visible {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+    <script defer src="js/index.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+<nav class="bg-black text-white px-4 sm:px-6 py-4 shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-wrap justify-between items-center">
+        <h1 class="text-2xl lg:text-3xl font-bold tracking-wide">Agencia de Autos</h1>
+        <ul class="flex space-x-4 sm:space-x-6 text-sm mt-2 sm:mt-0">
+            <li><a href="#" id="nav-inicio" class="hover:text-blue-300 transition duration-150 ease-in-out px-3 py-2 rounded-md">Inicio</a></li>
+            <li><a href="#" id="nav-registro" class="hover:text-blue-300 transition duration-150 ease-in-out px-3 py-2 rounded-md">Registrar</a></li>
+            <li><a href="#" id="nav-listado" class="hover:text-blue-300 transition duration-150 ease-in-out px-3 py-2 rounded-md">Listado</a></li>
         </ul>
     </div>
 </nav>
 
-<main class="container mx-auto mt-10 px-4">
-    <!-- Sección INICIO -->
-    <!-- Sección de Inicio con Cards -->
-    <section id="inicio" class="bg-gray-100 p-10 rounded-xl shadow-md border border-gray-200 mb-10">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Bienvenido al Sistema de Gestión de Autos</h2>
-        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-10">
+<main class="container mx-auto mt-8 sm:mt-10 px-4 pb-10">
+    <section id="inicio" class="bg-white p-6 sm:p-10 rounded-xl shadow-xl border border-gray-200 mb-10 fade-in-up">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 text-center">Bienvenido al Sistema de Gestión de Autos</h2>
+        <p class="text-gray-700 text-center text-base sm:text-lg max-w-3xl mx-auto mb-10">
             Administre eficientemente los vehículos registrados, registre nuevos autos y consulte su inventario en un solo lugar.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- Card 1: Auto Deportivo -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition fade-in-up">
-                <img src="https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg" alt="Auto Deportivo" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Autos Deportivos</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in-up">
+                <img src="https://placehold.co/600x400/3498db/ffffff?text=Auto+Deportivo"
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Imagen+no+disponible';"
+                     alt="Auto Deportivo" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-semibold text-xl text-gray-800 mb-2">Autos Deportivos</h3>
                     <p class="text-gray-600 text-sm">Conozca los autos deportivos más populares registrados en su sistema, ideales para velocidad y estilo.</p>
                 </div>
             </div>
 
-            <!-- Card 2: Auto Familiar (ya funcionaba bien) -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition fade-in-up">
-                <img src="https://cdn.pixabay.com/photo/2017/03/27/14/56/bmw-2179220_1280.jpg" alt="Autos Familiares" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Autos Familiares</h3>
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in-up">
+                <img src="https://placehold.co/600x400/2ecc71/ffffff?text=Auto+Familiar"
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Imagen+no+disponible';"
+                     alt="Autos Familiares" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-semibold text-xl text-gray-800 mb-2">Autos Familiares</h3>
                     <p class="text-gray-600 text-sm">Gestione cómodamente los vehículos familiares con mayor espacio y eficiencia de combustible.</p>
                 </div>
             </div>
 
-            <!-- Card 3: Auto Ejecutivo -->
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition fade-in-up">
-                <img src="https://www.noticiasneo.com/sites/default/files/2019-09/autos%20ejecutivos%20mas%20vendidos%202019.jpg" alt="Autos Ejecutivos" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Autos Ejecutivos</h3>
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 fade-in-up">
+                <img src="https://placehold.co/600x400/e74c3c/ffffff?text=Auto+Ejecutivo"
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Imagen+no+disponible';"
+                     alt="Autos Ejecutivos" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <h3 class="font-semibold text-xl text-gray-800 mb-2">Autos Ejecutivos</h3>
                     <p class="text-gray-600 text-sm">Explore vehículos ejecutivos elegantes y funcionales para uso profesional o empresarial.</p>
                 </div>
             </div>
-
+        </div>
     </section>
 
-
-    <!-- Sección REGISTRO -->
-    <section id="registro">
-        <h2 class="text-xl font-semibold mb-4 border-b border-gray-300 pb-2">Registrar Nuevo Auto</h2>
-        <form id="autoForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input type="text" id="marca" placeholder="Marca" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
-            <input type="text" id="modelo" placeholder="Modelo" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
-            <input type="text" id="color" placeholder="Color" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
-            <input type="text" id="placas" placeholder="Placas" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
-            <div class="md:col-span-2 flex justify-center">
-                <button type="submit" class="bg-black text-white px-6 py-2 text-sm rounded hover:bg-gray-800 transition">Guardar</button>
+    <section id="registro" class="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-gray-200 fade-in-up">
+        <h2 class="text-2xl font-semibold mb-6 border-b border-gray-300 pb-3 text-gray-900">Registrar Nuevo Auto</h2>
+        <form id="autoForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label for="marca" class="block text-sm font-medium text-gray-700 mb-1">Marca</label>
+                <input type="text" id="marca" placeholder="Ej: Toyota" required class="w-full bg-gray-50 border border-gray-300 text-gray-900 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="modelo" class="block text-sm font-medium text-gray-700 mb-1">Modelo</label>
+                <input type="text" id="modelo" placeholder="Ej: Corolla" required class="w-full bg-gray-50 border border-gray-300 text-gray-900 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="color" class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+                <input type="text" id="color" placeholder="Ej: Rojo" required class="w-full bg-gray-50 border border-gray-300 text-gray-900 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="placas" class="block text-sm font-medium text-gray-700 mb-1">Placas</label>
+                <input type="text" id="placas" placeholder="Ej: ABC-123" required class="w-full bg-gray-50 border border-gray-300 text-gray-900 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="md:col-span-2">
+                <label for="cliente" class="block text-sm font-medium text-gray-700 mb-1">Cliente</label>
+                <input type="text" id="cliente" placeholder="Ej: Juan Pérez" required class="w-full bg-gray-50 border border-gray-300 text-gray-900 p-3 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="md:col-span-2 flex justify-center mt-4">
+                <button type="submit" class="bg-black text-white px-8 py-3 text-sm font-medium rounded-md hover:bg-gray-800 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Guardar Auto</button>
             </div>
         </form>
     </section>
 
-    <!-- Sección LISTADO -->
-    <section id="listado" class="mt-10">
-        <h2 class="text-xl font-semibold mb-4 border-b border-gray-300 pb-2">Lista de Autos</h2>
-        <div id="autosContainer" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
+    <section id="listado" class="mt-10 fade-in-up">
+        <h2 class="text-2xl font-semibold mb-6 border-b border-gray-300 pb-3 text-gray-900">Lista de Autos Registrados</h2>
+        <div id="autosContainer" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        </div>
     </section>
-
 </main>
 
-<script>
-    function mostrarSeccion(id) {
-        document.querySelectorAll('main section').forEach(section => {
-            section.classList.remove('active');
-        });
-        document.getElementById(id).classList.add('active');
-    }
-</script>
+<div id="modalEditar" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] hidden p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-lg shadow-2xl w-full max-w-lg relative transform transition-all duration-300 ease-out scale-95 opacity-0" id="modalEditarContent">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-900">Editar Auto</h2>
+        <form id="formEditarAuto" class="space-y-4">
+            <input type="hidden" id="editarId">
+            <div>
+                <label for="editarMarca" class="block text-sm font-medium text-gray-700 mb-1">Marca</label>
+                <input type="text" id="editarMarca" placeholder="Marca" required class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="editarModelo" class="block text-sm font-medium text-gray-700 mb-1">Modelo</label>
+                <input type="text" id="editarModelo" placeholder="Modelo" required class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="editarColor" class="block text-sm font-medium text-gray-700 mb-1">Color</label>
+                <input type="text" id="editarColor" placeholder="Color" required class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="editarPlacas" class="block text-sm font-medium text-gray-700 mb-1">Placas</label>
+                <input type="text" id="editarPlacas" placeholder="Placas" required class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div>
+                <label for="editarCliente" class="block text-sm font-medium text-gray-700 mb-1">Cliente</label>
+                <input type="text" id="editarCliente" placeholder="Cliente" required class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            <div class="flex justify-end gap-3 pt-4">
+                <button type="button" onclick="cerrarModal()" class="px-5 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-100 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400">Cancelar</button>
+                <button type="submit" class="bg-black text-white px-5 py-2 text-sm font-medium rounded-md hover:bg-gray-800 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

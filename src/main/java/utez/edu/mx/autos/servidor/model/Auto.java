@@ -59,8 +59,13 @@ public class Auto {
         this.placas = placas;
     }
 
-    public String getCliente(String cliente) { return cliente; }
-    public void setCliente(String cliente) { this.cliente= cliente; }
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente= cliente;
+    }
 
 }
 
