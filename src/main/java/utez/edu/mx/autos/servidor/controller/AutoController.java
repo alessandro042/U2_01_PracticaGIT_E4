@@ -10,7 +10,7 @@ import utez.edu.mx.autos.servidor.service.AutoService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/autos")
 @CrossOrigin(origins = "*") // Permite peticiones desde cualquier origen
 public class AutoController {
 
