@@ -1,22 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Gestión de Autos</title>
     <script defer src="js/index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+    </style>
 </head>
-<body>
-<h1>Registro de Autos</h1>
+<body class="bg-white text-gray-800">
 
-<form id="autoForm">
-    <input type="text" id="marca" placeholder="Marca" required>
-    <input type="text" id="modelo" placeholder="Modelo" required>
-    <input type="text" id="color" placeholder="Color" required>
-    <input type="text" id="placas" placeholder="Placas" required>
-    <button type="submit">Guardar</button>
-</form>
+<!-- Navbar -->
+<nav class="bg-black text-white px-6 py-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold tracking-wide">Agencia de Autos</h1>
+        <ul class="flex space-x-6 text-sm">
+            <li><a href="#" onclick="mostrarSeccion('inicio')" class="hover:text-gray-300 transition">Inicio</a></li>
+            <li><a href="#" onclick="mostrarSeccion('registro')" class="hover:text-gray-300 transition">Registrar</a></li>
+            <li><a href="#" onclick="mostrarSeccion('listado')" class="hover:text-gray-300 transition">Listado</a></li>
+        </ul>
+    </div>
+</nav>
 
-<h2>Lista de Autos</h2>
-<div id="autosContainer"></div>
+<main class="container mx-auto mt-10 px-4">
+    <!-- Sección INICIO -->
+    <!-- Sección de Inicio con Cards -->
+    <section id="inicio" class="bg-gray-100 p-10 rounded-xl shadow-md border border-gray-200 mb-10">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Bienvenido al Sistema de Gestión de Autos</h2>
+        <p class="text-gray-700 text-center max-w-3xl mx-auto mb-10">
+            Administre eficientemente los vehículos registrados, registre nuevos autos y consulte su inventario en un solo lugar.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card 1: Auto Deportivo -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition fade-in-up">
+                <img src="https://cdn.pixabay.com/photo/2015/01/19/13/51/car-604019_1280.jpg" alt="Auto Deportivo" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Autos Deportivos</h3>
+                    <p class="text-gray-600 text-sm">Conozca los autos deportivos más populares registrados en su sistema, ideales para velocidad y estilo.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Auto Familiar (ya funcionaba bien) -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition fade-in-up">
+                <img src="https://cdn.pixabay.com/photo/2017/03/27/14/56/bmw-2179220_1280.jpg" alt="Autos Familiares" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Autos Familiares</h3>
+                    <p class="text-gray-600 text-sm">Gestione cómodamente los vehículos familiares con mayor espacio y eficiencia de combustible.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Auto Ejecutivo -->
+            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition fade-in-up">
+                <img src="https://www.noticiasneo.com/sites/default/files/2019-09/autos%20ejecutivos%20mas%20vendidos%202019.jpg" alt="Autos Ejecutivos" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="font-semibold text-lg text-gray-800 mb-2">Autos Ejecutivos</h3>
+                    <p class="text-gray-600 text-sm">Explore vehículos ejecutivos elegantes y funcionales para uso profesional o empresarial.</p>
+                </div>
+            </div>
+
+    </section>
+
+
+    <!-- Sección REGISTRO -->
+    <section id="registro">
+        <h2 class="text-xl font-semibold mb-4 border-b border-gray-300 pb-2">Registrar Nuevo Auto</h2>
+        <form id="autoForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input type="text" id="marca" placeholder="Marca" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
+            <input type="text" id="modelo" placeholder="Modelo" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
+            <input type="text" id="color" placeholder="Color" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
+            <input type="text" id="placas" placeholder="Placas" required class="bg-gray-100 text-gray-800 border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
+            <div class="md:col-span-2 flex justify-center">
+                <button type="submit" class="bg-black text-white px-6 py-2 text-sm rounded hover:bg-gray-800 transition">Guardar</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Sección LISTADO -->
+    <section id="listado" class="mt-10">
+        <h2 class="text-xl font-semibold mb-4 border-b border-gray-300 pb-2">Lista de Autos</h2>
+        <div id="autosContainer" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+
+</main>
+
+<script>
+    function mostrarSeccion(id) {
+        document.querySelectorAll('main section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(id).classList.add('active');
+    }
+</script>
+
 </body>
 </html>
